@@ -46,6 +46,7 @@ input{
     font-size: 30px;
     font-family: inherit;
     color: black;
+    text-align: center;
 }
 
 label{

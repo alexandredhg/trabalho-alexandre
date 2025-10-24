@@ -1,4 +1,4 @@
-import { Contato } from "./classes/contato.js";
+import { Administrador } from "./classes/administrador.js";
 const formFormulario = document.getElementById("formFormulario");
 const txtNome = document.getElementById("txtNome");
 const txtEmail = document.getElementById("txtEmail");
@@ -8,13 +8,13 @@ const btnSubmit = document.getElementById("btnSubmit");
 const btnLimpa = document.getElementById("btnLimpa");
 let params = new URLSearchParams(window.location.search);
 let id = params.get("id");
-window.onload = () => {
-    if (id) {
+/*window.onload = () => {
+    if(id){
         btnSubmit.textContent = "Alterar";
-        carregarDadosCont(id);
+        carregarDadosAdm(id);
     }
-};
-function exibirMenssagem(color, msg) {
+}*/
+function exibirMensagem(color, msg) {
     divMensagem.style.color = color;
     divMensagem.textContent = msg;
 }
@@ -24,23 +24,24 @@ formFormulario.addEventListener("submit", (event) => {
     const email = txtEmail.value;
     const mensagem = txtMensagem.value;
     if (!id) {
-        const cont = new Contato(nome, email, mensagem);
-        cont.cadastrar();
-        exibirMenssagem("green", "Menssagem Enviada com Sucesso!");
+        const adm = new Administrador(nome, email, mensagem);
+        adm.cadastrar();
+        exibirMensagem("green", "Mensagem Enviada com Sucesso!");
     }
-    else {
+    /*else{
         let contAlterado = new Contato(nome, email, mensagem);
         contAlterado.id = id;
         Contato.alterar(contAlterado);
         exibirMenssagem("Green", "Alteralção Realizada com Sucesso!");
-    }
+        
+    }*/
 });
-function carregarDadosCont(id) {
-    let cont = Contato.buscarCont(id);
-    if (cont) {
-        txtNome.value = cont.nome;
-        txtEmail.value = cont.email;
-        txtMensagem.value = cont.mensagem;
+function carregarDadosAdm(id) {
+    let adm = Administrador.buscarAdm(id);
+    if (adm) {
+        txtNome.value = adm.nome;
+        txtEmail.value = adm.email;
+        txtMensagem.value = adm.mensagem;
     }
 }
 btnLimpa.addEventListener("click", (event) => {
@@ -51,6 +52,6 @@ function limparCampos() {
     txtNome.value = '';
     txtEmail.value = '';
     txtMensagem.value = '';
-    exibirMenssagem("blue", "Limpeza dos Campos Realizada com sucesso!");
+    exibirMensagem("blue", "Limpeza dos Campos Realizada com sucesso!");
 }
 //# sourceMappingURL=formulario.js.map
